@@ -125,9 +125,9 @@ _QUOTED_KEY_TRANSLATION = {
 
 _MODIFIER_KEY_DIRECT = {
     # modifiers
-    'command': 'command',
+    'win': 'command',
     'shift': 'shift',
-    'option': 'option',
+    'alt': 'option',
     'control': 'control',
     'rightshift': 'rightshift',
     'rightoption': 'rightoption',
