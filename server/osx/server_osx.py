@@ -128,7 +128,7 @@ _MODIFIER_KEY_DIRECT = {
     'win': 'command',
     'shift': 'shift',
     'alt': 'option',
-    'control': 'control',
+    'ctrl': 'control',
     'rightshift': 'rightshift',
     'rightoption': 'rightoption',
     'rightcontrol': 'rightcontrol',
