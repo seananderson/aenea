@@ -436,10 +436,24 @@ def key_press(
 
 
 def write_text(text, paste=False):
-    '''send text formatted exactly as written to active window.  will use
-       simulate keypress typing for maximum compatibility.'''
+    '''Send text formatted exactly as written to active window.  Will use
+       simulate keypress typing for maximum compatibility. Optionally 
+       execute Keyboard Maestro macros by starting Text() command 
+       with "KBM ". The text after KBM should be the name of the macro.
+       For example "KBM Move window half left".'''
 
     logging.debug("text = %s" % (text))
+
+    if re.match('KBM[A-Za-z0-9 ]+', text):
+        text = re.sub(r'KBM ', r'', text)
+        script = applescript.AppleScript('''
+        tell application "Keyboard Maestro Engine"
+          do script "{text}"
+        end tell
+        '''.format(text=text))
+        script.run()
+        text = False
+
     if text:
         script = applescript.AppleScript('''
         tell application "System Events"
