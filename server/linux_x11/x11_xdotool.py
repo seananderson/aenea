@@ -151,8 +151,7 @@ class XdotoolPlatformRpcs(AbstractAeneaPlatformRpcs):
     """
     def __init__(self, config, xdotool='xdotool'):
         super(XdotoolPlatformRpcs, self).__init__(
-                logger=logging.getLogger('aenea.XdotoolPlatformRpcs')
-        )
+            logger=logging.getLogger('aenea.XdotoolPlatformRpcs'))
 
         self.xdotool = xdotool
         self.xdotool_delay = getattr(config, 'XDOTOOL_DELAY', 0)
@@ -265,7 +264,7 @@ class XdotoolPlatformRpcs(AbstractAeneaPlatformRpcs):
                 cmdline_path = '/proc/%s/cmdline' % properties['pid']
                 with open(cmdline_path) as fd:
                     properties['cmdline'] = fd.read().replace('\x00', ' ').strip()
-            except OSError:
+            except (IOError, OSError):
                 pass
         else:
             self.logger.warn('pid not set. properties: %s' % properties)
