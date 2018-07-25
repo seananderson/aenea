@@ -457,19 +457,19 @@ def write_text(text, paste=False):
 
     logging.debug("text = %s" % (text))
 
-#       '''Optionally execute Keyboard Maestro macros by starting Text()
-#       command with "KBM ". The text after KBM should be the name of the
-#       macro. For example "KBM Move window half left".'''
-# 
-#     if re.match('KBM[A-Za-z0-9 ]+', text):
-#         text = re.sub(r'KBM ', r'', text)
-#         script = applescript.AppleScript('''
-#         tell application "Keyboard Maestro Engine"
-#           do script "{text}"
-#         end tell
-#         '''.format(text=text))
-#         script.run()
-#         text = False
+    '''Optionally execute Keyboard Maestro macros by starting Text()
+       command with "KBM ". The text after KBM should be the name of the
+       macro. For example "KBM Move window half left".'''
+
+    if re.match('KBM[A-Za-z0-9 ]+', text):
+        text = re.sub(r'KBM ', r'', text)
+        script = applescript.AppleScript('''
+        tell application "Keyboard Maestro Engine"
+          do script "{text}"
+        end tell
+        '''.format(text=text))
+        script.run()
+        text = False
 
     if text:
         script = applescript.AppleScript('''
