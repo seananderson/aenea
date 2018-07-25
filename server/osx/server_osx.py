@@ -404,7 +404,7 @@ def key_press(
                          count_delay=count_delay,
                          key=key))
 
-    if count_delay is None or count < 2:
+    if count_delay is None:
         delay = ''
     else:
         delay = 'delay %0.2f ' % count_delay
